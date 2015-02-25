@@ -53,10 +53,20 @@ The status of good submission, can request the adding of a Success Case. This sh
 
 ## High level Format
 
+Unique data:
+
   * Date (of the publication)
-  * Link to the secondary source
   * Node name: (default the node.name, but can be changed, and is proposed to keep the same at every new addings), e.g.: WildLeaks, IRPI, PubLeaks.NL
-  * Sub Author: optional, see below
+  * (optional) Sub Author: see below
+
+Localized data, the interface ask to insert an entry of link + description for every language supported by the node. 
+
+  * Link to the secondary source
+  * Descrption of the publication, a short text, o the title 
+  * (optional) markdown content of additional stuff (maybe the primary source, havinh markdown we ha ve not to care of the content, and can support links)
+
+
+### Authorship display example
 
 WildLeaks case ( without Sub-Author):
 
@@ -74,8 +84,13 @@ Database:
   id (as default),
   creation_date (as default),
   publication_date (added by the use via calendar, datetime format),
-  link (unicode),
-  author (JSON, keys: *node* and *author*)
+  link to the secondary source (JSON, localized, but contain URL),
+  description of the publication (JSON - localized markdown) (a short text, like the outline or the title),
+  additional_info (JSON - localized markdown)
+  author (JSON, keys: *node* and *author*, *author* maybe None)
+
+The difference between URL and markdown, is that we need some valid URL in order to retrieve a copy automatically (maybe useful for cached preview, for historical records), instead the markdown content is just intended as an optional explanation, display only if the user want click on *see more*
+
 
 REST:
 
